@@ -2,8 +2,24 @@
   "private": true,
   "name": "js-utils",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "lib/js-utils.js",
   "repository": "git@github.com:intellihr/js-utils.git",
   "author": "Eric Chan <eric.chan@intellihr.com.au>",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "webpack": "^3.5.5"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  },
+  "dependencies": {
+    "http-status": "^1.0.1"
+  }
 }

@@ -1,0 +1,23 @@
+{
+  "presets" : [
+    [
+      "env",
+      {
+        "presets": [
+          "es2017",
+          "stage-0"
+        ],
+        "targets": {
+          "node": "6.10"
+        },
+        "loose": true
+      }
+    ]
+  ],
+  "plugins":[
+    [
+      "transform-object-rest-spread"
+    ]
+  ]
+}
+
