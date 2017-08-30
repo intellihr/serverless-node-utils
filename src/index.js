@@ -1,3 +1,3 @@
-import * as resp from './responses'
+import Resp from './response'
 
-export const responses = resp
+export const Response = Resp
