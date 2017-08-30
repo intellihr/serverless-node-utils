@@ -13,9 +13,9 @@ module.exports = {
     ]
   },
   output: {
-    library: 'js-utils',
+    library: 'serverless-node-utils',
     path: path.join(__dirname, 'lib'),
-    filename: 'js-utils.js',
+    filename: 'bundle.js',
     libraryTarget: 'umd'
   }
 }
