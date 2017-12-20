@@ -2,9 +2,16 @@ import HTTPStatus from 'http-status'
 
 export default class Response {
   constructor (
-    callback
+    callback,
+    {
+      cors = false
+    } = {}
   ) {
     this._callback = callback
+    this._corsHeaders = cors ? {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Credentials': true
+    } : {}
   }
 
   successResponse (
@@ -14,6 +21,7 @@ export default class Response {
   ) {
     return this._callback(null, {
       statusCode: HTTPStatus.OK,
+      headers: this._corsHeaders,
       body: JSON.stringify(response)
     })
   }
@@ -21,6 +29,7 @@ export default class Response {
   resourceNotFoundResponse () {
     return this._callback(null, {
       statusCode: HTTPStatus.NOT_FOUND,
+      headers: this._corsHeaders,
       body: {
         error: 'Resource not found'
       }
@@ -30,6 +39,7 @@ export default class Response {
   forbiddenResponse () {
     return this._callback(null, {
       statusCode: HTTPStatus.FORBIDDEN,
+      headers: this._corsHeaders,
       body: {
         error: 'Forbidden Access'
       }
@@ -47,6 +57,7 @@ export default class Response {
 
     return this._callback(null, {
       statusCode: HTTPStatus.INTERNAL_SERVER_ERROR,
+      headers: this._corsHeaders,
       body: {
         error: 'Error'
       }
