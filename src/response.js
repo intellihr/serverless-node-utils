@@ -71,9 +71,12 @@ export default class Response {
     }
   ) {
     const returnErrors = _.map(errors, error => {
+      const instance = _.toString(error.property)
+      const prefix = instance ? instance + ' ' : instance
+
       return {
         code: _.defaultTo(error.code, HTTPStatus.BAD_REQUEST),
-        detail: _.defaultTo(error.message, 'Bad Request')
+        detail: `${prefix}${_.defaultTo(error.message, 'Bad Request')}`
       }
     })
 
