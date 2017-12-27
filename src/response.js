@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import HTTPStatus from 'http-status'
 
 export default class Response {
@@ -60,6 +61,27 @@ export default class Response {
       headers: this._corsHeaders,
       body: {
         error: 'Error'
+      }
+    })
+  }
+
+  clientErrorResponse (
+    {
+      errors
+    }
+  ) {
+    const returnErrors = _.map(errors, error => {
+      return {
+        code: _.defaultTo(error.code, HTTPStatus.BAD_REQUEST),
+        detail: _.defaultTo(error.message, 'Bad Request')
+      }
+    })
+
+    return this._callback(null, {
+      statusCode: HTTPStatus.BAD_REQUEST,
+      headers: this._corsHeaders,
+      body: {
+        errors: returnErrors
       }
     })
   }
