@@ -1,16 +1,36 @@
 import _ from 'lodash'
 
-export function awsPromisifyHandler (Promise, fn) {
+function execCallbackHandler (console) {
+  return (resolve, reject) => {
+    return (error, stdout, stderr) => {
+      if (error) {
+        console.log(stdout)
+        console.log(stderr)
+        return reject(error)
+      }
+      resolve(stdout)
+    }
+  }
+}
+
+function awsCallbackHandler (resolve, reject) {
+  return (error, data) => {
+    if (error) {
+      return reject(error)
+    }
+    resolve(data)
+  }
+}
+
+function promisifyHandler (Promise, callbackHandler, fn) {
   return (...args) => {
     return new Promise((resolve, reject) => {
-      fn(...args, (error, data) => {
-        if (error) {
-          return reject(error)
-        }
-        resolve(data)
-      })
+      fn(...args, callbackHandler(resolve, reject))
     })
   }
 }
 
-export const awsPromisify = _.curry(awsPromisifyHandler)(Promise)
+const promisify = _.curry(promisifyHandler)(Promise)
+
+export const awsPromisify = _.curry(promisify)(awsCallbackHandler)
+export const execPromisify = _.curry(promisify)(execCallbackHandler(console))
