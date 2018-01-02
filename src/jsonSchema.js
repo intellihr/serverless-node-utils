@@ -29,7 +29,8 @@ class JsonSchemaValidator extends JsValidator {
 
     this.customFormats = {
       iso8601: input => defaultValidator(validator.isISO8601)(input),
-      uuid: input => defaultValidator(validator.isUUID)(input)
+      uuid: input => defaultValidator(validator.isUUID)(input),
+      url: input => defaultValidator(validator.isURL)(input)
     }
   }
 }
