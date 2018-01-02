@@ -4,9 +4,7 @@ import { awsPromisify } from './promisify'
 
 function kinesisHelper (aws, process, uuid, promisify) {
   const {
-    IS_OFFLINE,
-    KINESIS_STREAM_NAME,
-    SHARD_COUNT
+    IS_OFFLINE
   } = process.env
 
   let options = {}
@@ -22,26 +20,11 @@ function kinesisHelper (aws, process, uuid, promisify) {
   const kinesis = new aws.Kinesis(options)
 
   return {
-    createStream: () => promisify(::kinesis.createStream)({
-      ShardCount: SHARD_COUNT,
-      StreamName: KINESIS_STREAM_NAME
-    }),
-    putRecord: ({ Data }) => promisify(::kinesis.putRecord)({
-      Data,
-      PartitionKey: uuid(),
-      StreamName: KINESIS_STREAM_NAME
-    }),
-    describeStream: () => promisify(::kinesis.describeStream)({
-      StreamName: KINESIS_STREAM_NAME
-    }),
-    getShardIterator: ({ ShardId }) => promisify(::kinesis.getShardIterator)({
-      ShardId,
-      ShardIteratorType: 'TRIM_HORIZON',
-      StreamName: KINESIS_STREAM_NAME
-    }),
-    getRecords: ({ ShardIterator }) => promisify(::kinesis.getRecords)({
-      ShardIterator
-    })
+    createStream: promisify(::kinesis.createStream),
+    putRecord: promisify(::kinesis.putRecord),
+    describeStream: promisify(::kinesis.describeStream),
+    getShardIterator: promisify(::kinesis.getShardIterator),
+    getRecords: promisify(::kinesis.getRecords)
   }
 }
 

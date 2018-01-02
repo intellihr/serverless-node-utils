@@ -19,7 +19,8 @@ function dynamoDBHelper (aws, process, promisify) {
   const dynamoDB = new aws.DynamoDB.DocumentClient(options)
 
   return {
-    query: promisify(::dynamoDB.query)
+    query: promisify(::dynamoDB.query),
+    put: promisify(::dynamoDB.put)
   }
 }
 
