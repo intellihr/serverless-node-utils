@@ -26,21 +26,21 @@ function kinesisHelper (aws, process, uuid, promisify) {
       ShardCount: SHARD_COUNT,
       StreamName: KINESIS_STREAM_NAME
     }),
-    putRecord: (message) => promisify(::kinesis.putRecord)({
-      Data: message,
+    putRecord: ({ Data }) => promisify(::kinesis.putRecord)({
+      Data,
       PartitionKey: uuid(),
       StreamName: KINESIS_STREAM_NAME
     }),
     describeStream: () => promisify(::kinesis.describeStream)({
       StreamName: KINESIS_STREAM_NAME
     }),
-    getShardIterator: ({ shardId }) => promisify(::kinesis.getShardIterator)({
-      ShardId: shardId,
+    getShardIterator: ({ ShardId }) => promisify(::kinesis.getShardIterator)({
+      ShardId,
       ShardIteratorType: 'TRIM_HORIZON',
       StreamName: KINESIS_STREAM_NAME
     }),
-    getRecords: ({ shardIterator }) => promisify(::kinesis.getRecords)({
-      ShardIterator: shardIterator
+    getRecords: ({ ShardIterator }) => promisify(::kinesis.getRecords)({
+      ShardIterator
     })
   }
 }
