@@ -13,7 +13,7 @@ function kinesisHelper (aws, process, uuid, promisify) {
   if (IS_OFFLINE) {
     options = {
       region: 'localhost',
-      endpoint: `http://${KINESIS_ENDPOINT}`,
+      endpoint: KINESIS_ENDPOINT,
       credentials: new aws.Credentials('accessKey', 'secretKey')
     }
   }

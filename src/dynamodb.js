@@ -12,7 +12,7 @@ function dynamoDBHelper (aws, process, promisify) {
   if (IS_OFFLINE) {
     options = {
       region: 'localhost',
-      endpoint: `http://${DYNAMODB_ENDPOINT}`,
+      endpoint: DYNAMODB_ENDPOINT,
       credentials: new aws.Credentials('accessKey', 'secretKey')
     }
   }
