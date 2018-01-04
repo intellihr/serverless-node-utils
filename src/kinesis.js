@@ -4,7 +4,8 @@ import { awsPromisify } from './promisify'
 
 function kinesisHelper (aws, process, uuid, promisify) {
   const {
-    IS_OFFLINE
+    IS_OFFLINE,
+    KINESIS_ENDPOINT
   } = process.env
 
   let options = {}
@@ -12,7 +13,7 @@ function kinesisHelper (aws, process, uuid, promisify) {
   if (IS_OFFLINE) {
     options = {
       region: 'localhost',
-      endpoint: 'http://localstack:4568',
+      endpoint: `http://${KINESIS_ENDPOINT}`,
       credentials: new aws.Credentials('accessKey', 'secretKey')
     }
   }

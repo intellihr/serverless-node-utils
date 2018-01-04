@@ -3,7 +3,8 @@ import { awsPromisify } from './promisify'
 
 function dynamoDBHelper (aws, process, promisify) {
   const {
-    IS_OFFLINE
+    IS_OFFLINE,
+    DYNAMODB_ENDPOINT
   } = process.env
 
   let options = {}
@@ -11,7 +12,7 @@ function dynamoDBHelper (aws, process, promisify) {
   if (IS_OFFLINE) {
     options = {
       region: 'localhost',
-      endpoint: 'http://localstack:4569',
+      endpoint: `http://${DYNAMODB_ENDPOINT}`,
       credentials: new aws.Credentials('accessKey', 'secretKey')
     }
   }
