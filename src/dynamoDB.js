@@ -21,7 +21,8 @@ function dynamoDBHelper (aws, process, promisify) {
 
   return {
     query: promisify(::dynamoDB.query),
-    put: promisify(::dynamoDB.put)
+    put: promisify(::dynamoDB.put),
+    delete: promisify(::dynamoDB.delete)
   }
 }
 
