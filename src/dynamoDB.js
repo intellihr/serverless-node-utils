@@ -17,13 +17,8 @@ function dynamoDBHelper (aws, process, promisify) {
     }
   }
 
-  console.log(options)
-  console.log('xxxxxx')
-
   const dynamoDBClient = new aws.DynamoDB.DocumentClient(options)
   const dynamoDB = new aws.DynamoDB(options)
-
-  console.log('ready........')
 
   return {
     delete: promisify(::dynamoDBClient.delete),
