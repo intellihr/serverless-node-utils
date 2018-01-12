@@ -17,12 +17,21 @@ function dynamoDBHelper (aws, process, promisify) {
     }
   }
 
-  const dynamoDB = new aws.DynamoDB.DocumentClient(options)
+  console.log(options)
+  console.log('xxxxxx')
+
+  const dynamoDBClient = new aws.DynamoDB.DocumentClient(options)
+  const dynamoDB = new aws.DynamoDB(options)
+
+  console.log('ready........')
 
   return {
-    query: promisify(::dynamoDB.query),
-    put: promisify(::dynamoDB.put),
-    delete: promisify(::dynamoDB.delete)
+    delete: promisify(::dynamoDBClient.delete),
+    query: promisify(::dynamoDBClient.query),
+    put: promisify(::dynamoDBClient.put),
+    createTable: promisify(::dynamoDB.createTable),
+    deleteTable: promisify(::dynamoDB.deleteTable),
+    listTables: promisify(::dynamoDB.listTables)
   }
 }
 

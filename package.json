@@ -27,7 +27,7 @@
     "lint:fix": "standard --env jest --fix"
   },
   "dependencies": {
-    "aws-sdk": "^2.176.0",
+    "aws-sdk": "^2.180.0",
     "http-status": "^1.0.1",
     "jsonschema": "^1.2.2",
     "ramda": "^0.25.0",

@@ -15,6 +15,13 @@ export default class Response {
     } : {}
   }
 
+  emptyResponse () {
+    return this._callback(null, {
+      statusCode: HTTPStatus.NO_CONTENT,
+      headers: this._corsHeaders
+    })
+  }
+
   successResponse (
     {
       response = {}
