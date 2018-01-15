@@ -1,7 +1,6 @@
 {
   "private": true,
   "name": "serverless-node-utils",
-  "version": "1.0.0",
   "main": "lib/bundle.js",
   "repository": "git@github.com:intellihr/serverless-node-utils.git",
   "author": "Eric Chan <eric.chan@intellihr.com.au>",
