@@ -22,6 +22,7 @@ function kinesisHelper (aws, process, uuid, promisify) {
 
   return {
     createStream: promisify(::kinesis.createStream),
+    deleteStream: promisify(::kinesis.deleteStream),
     putRecord: promisify(::kinesis.putRecord),
     describeStream: promisify(::kinesis.describeStream),
     getShardIterator: promisify(::kinesis.getShardIterator),
