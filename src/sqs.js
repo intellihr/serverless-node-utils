@@ -20,6 +20,7 @@ function sqsHelper (aws, process, promisify) {
   const sqs = new aws.SQS(options)
 
   return {
+    createQueue: promisify(::sqs.createQueue),
     sendMessage: promisify(::sqs.sendMessage)
   }
 }
