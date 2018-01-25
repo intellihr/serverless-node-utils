@@ -7,7 +7,7 @@ function sqsHelper (aws, process, promisify) {
     SQS_ENDPOINT
   } = process.env
 
-  let options = null
+  let options = {}
 
   if (IS_OFFLINE) {
     options = {
@@ -17,7 +17,7 @@ function sqsHelper (aws, process, promisify) {
     }
   }
 
-  const sqs = options ? new aws.SQS(options) : new aws.SQS()
+  const sqs = new aws.SQS(options)
 
   return {
     createQueue: promisify(::sqs.createQueue),
