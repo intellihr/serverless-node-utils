@@ -38,9 +38,9 @@ export default class Response {
     return this._callback(null, {
       statusCode: HTTPStatus.NOT_FOUND,
       headers: this._corsHeaders,
-      body: {
+      body: JSON.stringify({
         error: 'Resource not found'
-      }
+      })
     })
   }
 
@@ -48,9 +48,9 @@ export default class Response {
     return this._callback(null, {
       statusCode: HTTPStatus.FORBIDDEN,
       headers: this._corsHeaders,
-      body: {
+      body: JSON.stringify({
         error: 'Forbidden Access'
-      }
+      })
     })
   }
 
@@ -66,9 +66,9 @@ export default class Response {
     return this._callback(null, {
       statusCode: HTTPStatus.INTERNAL_SERVER_ERROR,
       headers: this._corsHeaders,
-      body: {
+      body: JSON.stringify({
         error: 'Error'
-      }
+      })
     })
   }
 
@@ -90,9 +90,9 @@ export default class Response {
     return this._callback(null, {
       statusCode: HTTPStatus.BAD_REQUEST,
       headers: this._corsHeaders,
-      body: {
+      body: JSON.stringify({
         errors: returnErrors
-      }
+      })
     })
   }
 }
