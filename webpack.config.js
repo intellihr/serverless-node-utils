@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 
 module.exports = {
   entry: path.join(__dirname, 'src/index.js'),
@@ -17,5 +18,8 @@ module.exports = {
     path: path.join(__dirname, 'lib'),
     filename: 'bundle.js',
     libraryTarget: 'umd'
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({ 'global.GENTLY': false })
+  ]
 }
