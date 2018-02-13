@@ -1,5 +1,14 @@
 import _ from 'lodash'
 
+function swaggerCallbackHandler (resolve, reject) {
+  return (error, schema) => {
+    if (error) {
+      reject(error)
+    }
+    resolve(schema)
+  }
+}
+
 function execCallbackHandler (console) {
   return (resolve, reject) => {
     return (error, stdout, stderr) => {
@@ -34,3 +43,4 @@ const promisify = _.curry(promisifyHandler)(Promise)
 
 export const awsPromisify = _.curry(promisify)(awsCallbackHandler)
 export const execPromisify = _.curry(promisify)(execCallbackHandler(console))
+export const swaggerPromisify = _.curry(promisify)(swaggerCallbackHandler)
