@@ -11,7 +11,7 @@ function cwHelper (aws, process, promisify) {
 
   if (IS_OFFLINE) {
     options = {
-      region: 'localhost',
+      region: 'ap-southeast-2',
       endpoint: CLOUDWATCH_ENDPOINT,
       credentials: new aws.Credentials('accessKey', 'secretKey')
     }
