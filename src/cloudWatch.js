@@ -3,7 +3,8 @@ import { awsPromisify } from './promisify'
 
 function cwHelper (aws, process, promisify) {
   const {
-    IS_OFFLINE
+    IS_OFFLINE,
+    CLOUDWATCH_ENDPOINT
   } = process.env
 
   let options = {}
@@ -11,6 +12,7 @@ function cwHelper (aws, process, promisify) {
   if (IS_OFFLINE) {
     options = {
       region: 'localhost',
+      endpoint: CLOUDWATCH_ENDPOINT,
       credentials: new aws.Credentials('accessKey', 'secretKey')
     }
   }
