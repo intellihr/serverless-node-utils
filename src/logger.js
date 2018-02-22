@@ -1,8 +1,10 @@
-import { curry, compose } from 'ramda'
-import moment from 'moment'
-import { Console } from 'console'
 import _ from 'lodash'
 import fs from 'fs'
+import moment from 'moment'
+import mkdirp from 'mkdirp'
+import { curry, compose } from 'ramda'
+import { Console } from 'console'
+import { dirname } from 'path'
 
 const omitNil = curry(
   (_, fn) => params => fn(_.omitBy(params, _.isNil))
@@ -39,13 +41,13 @@ const _logHandler = compose(
 )
 
 const _logger = (
-  ({ LOGGING }, fs, Console, _logHandler) => {
+  ({ LOGGING, LOG_FILE_LOCATION }, fs, Console, dirname, mkdirp, _logHandler) => {
     let _console = console
     if (LOGGING === 'file') {
-      if (!fs.existsSync('./output')) {
-        fs.mkdirSync('./output')
-      }
-      const output = fs.createWriteStream('./output/log.txt')
+      const outputLocation = LOG_FILE_LOCATION | './output/log.txt'
+      mkdirp.sync(dirname(outputLocation))
+
+      const output = fs.createWriteStream(outputLocation, { flags: 'a' })
 
       _console = new Console(output)
     }
@@ -54,7 +56,7 @@ const _logger = (
       log: _logHandler(_console.log)
     }
   }
-)(process.env, fs, Console, _logHandler)
+)(process.env, fs, Console, dirname, mkdirp, _logHandler)
 
 const _mainLogger = curry(
   (
