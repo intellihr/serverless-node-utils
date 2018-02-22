@@ -44,7 +44,7 @@ const _logger = (
   ({ LOGGING, LOG_FILE_LOCATION }, fs, Console, dirname, mkdirp, _logHandler) => {
     let _console = console
     if (LOGGING === 'file') {
-      const outputLocation = LOG_FILE_LOCATION | './output/log.txt'
+      const outputLocation = LOG_FILE_LOCATION || './output/log.txt'
       mkdirp.sync(dirname(outputLocation))
 
       const output = fs.createWriteStream(outputLocation, { flags: 'a' })
