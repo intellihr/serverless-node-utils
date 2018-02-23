@@ -3,6 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import moment from 'moment'
 import mkdirp from 'mkdirp'
+import serializerr from 'serializerr'
 import { curry, compose } from 'ramda'
 import { Console } from 'console'
 
@@ -63,6 +64,7 @@ const _logger = curry(
   (
     { SERVICE, STAGE, HOST, REGION, LOGGING_LEVEL },
     moment,
+    serializerr,
     _console,
     {
       level = 'error',
@@ -83,6 +85,7 @@ const _logger = curry(
     const logger = {
       log: options => {
         _console.log({
+          data: serializerr(data),
           service,
           environment,
           host,
@@ -94,9 +97,11 @@ const _logger = curry(
           tags,
           status,
           message,
-          data,
           tenant,
-          ...options
+          ...{
+            ...options,
+            data: serializerr(data)
+          }
         })
       },
       emergency: (message, options = {}) => logger.log({ level: 'emerg', message, ...options }),
@@ -111,7 +116,7 @@ const _logger = curry(
 
     return logger
   }
-)(process.env, moment, _console)
+)(process.env, moment, serializerr, _console)
 
 const loggerHandler = (
   (Object, _logger) => {
