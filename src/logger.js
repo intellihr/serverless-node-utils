@@ -6,11 +6,11 @@ import mkdirp from 'mkdirp'
 import { curry, compose } from 'ramda'
 import { Console } from 'console'
 
-const omitNil = curry(
+const omitNilValueInLog = curry(
   (_, fn) => params => fn(_.omitBy(params, _.isNil))
 )(_)
 
-const filterLog = (
+const filterLogByLoggingLevel = (
   ({ LOGGING_LEVEL }) => {
     const levelMap = {
       emerg: 0,
@@ -35,14 +35,14 @@ const filterLog = (
   }
 )(process.env)
 
-const _logHandler = compose(
-  omitNil,
-  filterLog
+const _refineLog = compose(
+  omitNilValueInLog,
+  filterLogByLoggingLevel
 )
 
-const _logger = (
-  ({ PWD, LOGGING, LOG_FILE_LOCATION }, fs, Console, path, mkdirp, _logHandler) => {
-    let _console = console
+const _console = (
+  ({ PWD, LOGGING, LOG_FILE_LOCATION }, fs, Console, path, mkdirp, _refineLog) => {
+    let newConsole = console
     if (LOGGING === 'file') {
       const outputLocation = path.resolve(PWD, LOG_FILE_LOCATION || './output/log.txt')
       const outputFolder = path.resolve(PWD, path.dirname(outputLocation))
@@ -50,20 +50,20 @@ const _logger = (
 
       const output = fs.createWriteStream(outputLocation, { flags: 'a' })
 
-      _console = new Console(output)
+      newConsole = new Console(output)
     }
 
     return {
-      log: _logHandler(_console.log)
+      log: _refineLog(newConsole.log)
     }
   }
-)(process.env, fs, Console, path, mkdirp, _logHandler)
+)(process.env, fs, Console, path, mkdirp, _refineLog)
 
-const _mainLogger = curry(
+const _logger = curry(
   (
     { SERVICE, STAGE, HOST, REGION, LOGGING_LEVEL },
     moment,
-    _logger,
+    _console,
     {
       level = 'error',
       service = SERVICE,
@@ -80,9 +80,9 @@ const _mainLogger = curry(
       tenant
     }
   ) => {
-    return {
-      log: params => {
-        _logger.log({
+    const logger = {
+      log: options => {
+        _console.log({
           service,
           environment,
           host,
@@ -96,25 +96,33 @@ const _mainLogger = curry(
           message,
           data,
           tenant,
-          ...params
+          ...options
         })
-      }
+      },
+      emergency: (message, options = {}) => logger.log({ level: 'emerg', message, ...options }),
+      alert: (message, options = {}) => logger.log({ level: 'alert', message, ...options }),
+      critical: (message, options = {}) => logger.log({ level: 'crit', message, ...options }),
+      error: (message, options = {}) => logger.log({ level: 'err', message, ...options }),
+      warning: (message, options = {}) => logger.log({ level: 'warning', message, ...options }),
+      notice: (message, options = {}) => logger.log({ level: 'notice', message, ...options }),
+      info: (message, options = {}) => logger.log({ level: 'info', message, ...options }),
+      debug: (message, options = {}) => logger.log({ level: 'debug', message, ...options })
     }
+
+    return logger
   }
-)(process.env, moment, _logger)
+)(process.env, moment, _console)
 
 const loggerHandler = (
-  _mainLogger => {
+  (Object, _logger) => {
     const handler = params => {
       const newHandler = newParams => {
         return handler({ ...params, ...newParams })
       }
-      newHandler.log = _mainLogger(params).log
-      return newHandler
+      return Object.assign(newHandler, _logger(params))
     }
-    handler.log = _mainLogger({}).log
-    return handler
+    return Object.assign(handler, _logger({}))
   }
-)(_mainLogger)
+)(Object, _logger)
 
 export const logger = loggerHandler
