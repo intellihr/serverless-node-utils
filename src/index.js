@@ -7,6 +7,7 @@ import { dynamoDB as dyn } from './dynamoDB'
 import { s3 as _s3 } from './s3'
 import { sqs as _sqs } from './sqs'
 import { cw } from './cloudWatch'
+import { logger as _logger } from './logger'
 
 export const Response = Resp
 
@@ -22,3 +23,5 @@ export const dynamoDB = dyn
 export const s3 = _s3
 export const sqs = _sqs
 export const cloudWatch = cw
+
+export const logger = _logger
