@@ -45,8 +45,8 @@ const _logger = (
     let _console = console
     if (LOGGING === 'file') {
       const outputLocation = path.resolve(PWD, LOG_FILE_LOCATION || './output/log.txt')
-      const outputFodler = path.resolve(PWD, path.dirname(outputLocation))
-      mkdirp.sync(outputFodler)
+      const outputFolder = path.resolve(PWD, path.dirname(outputLocation))
+      mkdirp.sync(outputFolder)
 
       const output = fs.createWriteStream(outputLocation, { flags: 'a' })
 
