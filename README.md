@@ -1,6 +1,6 @@
 ## Install
 
-Replace `{hash}` with the first 7 digit of the comment hash. e.g. `a453ed9`
+Replace `{hash}` with the first 7 digit of the commit hash. e.g. `a453ed9`
 
 Npm
 ```sh
