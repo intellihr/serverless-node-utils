@@ -44,7 +44,35 @@ const levelMap = {
 }
 ```
 
+## Logging Options
+
+These are accepted as part of our standard (see [Logging Format](https://intellihr.atlassian.net/wiki/spaces/DG/pages/284983300/Logging+Format))
+
+```javascript
+const {
+  level,
+  service,
+  environment,
+  region,
+  host,
+  timestamp,
+  user,
+  path,
+  tags,
+  status,
+  message,
+  data,
+  tenant
+} = options
+
+logger.log(options)
+// or
+logger(options).log()
+```
+
 ## Usage
+
+See [Logging Options](#logging-options) for all the accepted options
 
 Simple:
 ``` js
