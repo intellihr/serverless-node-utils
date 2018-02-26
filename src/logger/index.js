@@ -1,15 +1,13 @@
 import Logger from './Logger'
 
-const loggerHandler = (
-  (Object, Logger) => {
-    const handler = params => {
-      const newHandler = newParams => {
-        return handler({ ...params, ...newParams })
-      }
-      return Object.assign(newHandler, new Logger(params))
+const createLogger = ({ assign }, Logger) => {
+  const handler = params => {
+    const newHandler = newParams => {
+      return handler({ ...params, ...newParams })
     }
-    return Object.assign(handler, new Logger())
+    return assign(newHandler, new Logger(params))
   }
-)(Object, Logger)
+  return assign(handler, new Logger())
+}
 
-export const logger = loggerHandler
+export const logger = createLogger(Object, Logger)
