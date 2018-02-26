@@ -41,7 +41,7 @@ const filterLogByLoggingLevel = curry(
 )(process.env)
 
 export const refineLog = compose(
-  yamlifyLogIfOffline,
+  filterLogByLoggingLevel,
   omitNilValueInLog,
-  filterLogByLoggingLevel
+  yamlifyLogIfOffline
 )
