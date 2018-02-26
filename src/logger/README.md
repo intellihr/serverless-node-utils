@@ -92,6 +92,7 @@ logger.log(options)
 ## Usage
 
 See [Logger Options](#logger-options) for all the accepted options
+
 See [Logger Methods](#logger-methods) for all the available methods
 
 Simple:
