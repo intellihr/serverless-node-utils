@@ -1,6 +1,6 @@
 import moment from 'moment'
-import serializerr from 'serializerr'
 import LoggerConsole from './LoggerConsole'
+import { serialize } from './serialize'
 
 const {
   SERVICE,
@@ -39,7 +39,7 @@ export default class Logger {
       host: HOST,
       timestamp: moment.utc().format(),
       ...options,
-      data: options.data ? serializerr(options.data) : null
+      data: options.data ? serialize(options.data) : null
     }
 
     this.emergency = ::this.emergency
@@ -56,7 +56,7 @@ export default class Logger {
     _console.log({
       ...this._options,
       ...options,
-      data: options.data ? serializerr(options.data) : this._options.data
+      data: options.data ? serialize(options.data) : this._options.data
     })
   }
 
