@@ -44,7 +44,7 @@ const levelMap = {
 }
 ```
 
-## Logging Options
+## Logger Options
 
 These are accepted as part of our standard (see [Logging Format](https://intellihr.atlassian.net/wiki/spaces/DG/pages/284983300/Logging+Format))
 
@@ -70,9 +70,29 @@ logger.log(options)
 logger(options).log()
 ```
 
+## Logger Methods
+
+See [Logger Options](#logger-options) for all the accepted options
+
+```javascript
+import { logger } from '@intellihr/serverless-node-utils'
+
+logger.emergency('message', options)
+logger.alert('message', options)
+logger.critical('message', options)
+logger.error('message', options)
+logger.warning('message', options)
+logger.notice('message', options)
+logger.info('message', options)
+logger.debug('message', options)
+logger.log(options)
+
+```
+
 ## Usage
 
-See [Logging Options](#logging-options) for all the accepted options
+See [Logger Options](#logger-options) for all the accepted options
+See [Logger Methods](#logger-methods) for all the available methods
 
 Simple:
 ``` js
