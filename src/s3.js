@@ -13,7 +13,8 @@ function s3Helper (aws, process, promisify) {
     options = {
       region: 'localhost',
       endpoint: S3_ENDPOINT,
-      credentials: new aws.Credentials('accessKey', 'secretKey')
+      credentials: new aws.Credentials('accessKey', 'secretKey'),
+      s3ForcePathStyle: true
     }
   }
 
