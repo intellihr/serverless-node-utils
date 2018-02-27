@@ -20,7 +20,8 @@ function s3Helper (aws, process, promisify) {
   const s3 = new aws.S3(options)
 
   return {
-    putObject: promisify(::s3.putObject)
+    putObject: promisify(::s3.putObject),
+    createBucket: promisify(::s3.createBucket)
   }
 }
 
