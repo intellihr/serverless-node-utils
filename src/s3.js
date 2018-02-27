@@ -13,14 +13,16 @@ function s3Helper (aws, process, promisify) {
     options = {
       region: 'localhost',
       endpoint: S3_ENDPOINT,
-      credentials: new aws.Credentials('accessKey', 'secretKey')
+      credentials: new aws.Credentials('accessKey', 'secretKey'),
+      s3ForcePathStyle: true
     }
   }
 
   const s3 = new aws.S3(options)
 
   return {
-    putObject: promisify(::s3.putObject)
+    putObject: promisify(::s3.putObject),
+    createBucket: promisify(::s3.createBucket)
   }
 }
 
