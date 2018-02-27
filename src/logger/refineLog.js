@@ -1,12 +1,22 @@
 import _ from 'lodash'
+import yamljs from 'yamljs'
 import { curry, compose } from 'ramda'
 
+const yamlifyLogIfOffline = curry(
+  ({ IS_OFFLINE }, yamljs, log) => params => {
+    if (IS_OFFLINE) {
+      return log(yamljs.stringify(params, null, 2))
+    }
+    return log(params)
+  }
+)(process.env, yamljs)
+
 const omitNilValueInLog = curry(
-  (_, fn) => params => fn(_.omitBy(params, _.isNil))
+  (_, log) => params => log(_.omitBy(params, _.isNil))
 )(_)
 
-const filterLogByLoggingLevel = (
-  ({ LOGGING_LEVEL }) => {
+const filterLogByLoggingLevel = curry(
+  ({ LOGGING_LEVEL }, log) => {
     const levelMap = {
       emerg: 0,
       alert: 1,
@@ -18,19 +28,20 @@ const filterLogByLoggingLevel = (
       debug: 7
     }
 
-    return fn => params => {
+    return params => {
       const {
         level
       } = params
 
       if (!LOGGING_LEVEL || levelMap[level] <= levelMap[LOGGING_LEVEL]) {
-        fn(params)
+        log(params)
       }
     }
   }
 )(process.env)
 
 export const refineLog = compose(
+  filterLogByLoggingLevel,
   omitNilValueInLog,
-  filterLogByLoggingLevel
+  yamlifyLogIfOffline
 )
