@@ -42,6 +42,7 @@ export default class Logger {
       data: options.data ? serialize(options.data) : null
     }
 
+    this.log = ::this.log
     this.emergency = ::this.emergency
     this.alert = ::this.alert
     this.critical = ::this.critical
