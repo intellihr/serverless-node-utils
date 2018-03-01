@@ -2,11 +2,11 @@ import Resp from './response'
 import { validate as jsv } from './jsonSchema'
 import { awsPromisify as awsp, execPromisify as execp } from './promisify'
 import { swagger as _swagger } from './swagger'
-import { kinesis as kin } from './kinesis'
-import { dynamoDB as dyn } from './dynamoDB'
+import { kinesis as _kinesis } from './kinesis'
+import { dynamoDB as _dynamoDB } from './dynamoDB'
 import { s3 as _s3 } from './s3'
 import { sqs as _sqs } from './sqs'
-import { cw } from './cloudWatch'
+import { cloudWatch as _cloudWatch } from './cloudWatch'
 import { logger as _logger } from './logger'
 
 export const Response = Resp
@@ -18,10 +18,10 @@ export const execPromisify = execp
 
 export const swagger = _swagger
 
-export const kinesis = kin
-export const dynamoDB = dyn
+export const kinesis = _kinesis
+export const dynamoDB = _dynamoDB
 export const s3 = _s3
 export const sqs = _sqs
-export const cloudWatch = cw
+export const cloudWatch = _cloudWatch
 
 export const logger = _logger
