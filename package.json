@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "serverless-node-utils",
   "description": "A serverless utils library",
   "main": "lib/bundle.js",
@@ -44,5 +44,7 @@
       "/lib/"
     ]
   },
-  "files": ["lib"]
+  "files": [
+    "lib"
+  ]
 }
