@@ -5,7 +5,7 @@
   "main": "lib/bundle.js",
   "repository": "https://github.com/intellihr/serverless-node-utils",
   "author": "Eric Chan <eric.chan@intellihr.com.au>",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
@@ -24,7 +24,8 @@
     "build": "webpack --config webpack.config.js -d --progress",
     "build:watch": "yarn build --watch --progress",
     "lint": "standard --env jest --verbose | snazzy",
-    "lint:fix": "standard --env jest --fix"
+    "lint:fix": "standard --env jest --fix",
+    "prepublish": "yarn run lint && yarn run build"
   },
   "dependencies": {
     "aws-sdk": "^2.180.0",
