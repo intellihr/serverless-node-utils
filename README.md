@@ -8,7 +8,7 @@ npm install serverless-node-utils
 ```
 
 Yarn
-```
+```sh
 yarn add serverless-node-utils
 ```
 
