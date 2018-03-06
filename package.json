@@ -1,6 +1,6 @@
 {
   "version": "1.0.3",
-  "name": "serverless-node-utils",
+  "name": "@intellihr/serverless-node-utils",
   "description": "A serverless utils library",
   "main": "lib/bundle.js",
   "repository": "https://github.com/intellihr/serverless-node-utils",
@@ -18,7 +18,9 @@
     "babel-preset-stage-0": "^6.24.1",
     "snazzy": "^7.0.0",
     "standard": "^10.0.3",
-    "webpack": "^3.5.5"
+    "webpack": "^3.5.5",
+    "webpack-bundle-analyzer": "^2.11.1",
+    "webpack-node-externals": "^1.6.0"
   },
   "scripts": {
     "build": "webpack --config webpack.config.js -d --progress",

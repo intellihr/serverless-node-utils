@@ -1,5 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const nodeExternals = require('webpack-node-externals')
+
 
 module.exports = {
   entry: path.join(__dirname, 'src/index.js'),
@@ -19,7 +22,11 @@ module.exports = {
     filename: 'bundle.js',
     libraryTarget: 'umd'
   },
+  externals: [
+    nodeExternals()
+  ],
   plugins: [
-    new webpack.DefinePlugin({ 'global.GENTLY': false })
+    new webpack.DefinePlugin({ 'global.GENTLY': false }),
+    new BundleAnalyzerPlugin()
   ]
 }
