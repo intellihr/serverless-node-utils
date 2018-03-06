@@ -1,16 +1,15 @@
+An AWS serverless util library for `node.js`
+
 ## Install
 
-Replace `{hash}` with the first 7 digit of the commit hash. e.g. `a453ed9`
-
-Npm
+NPM
 ```sh
-npm install git+https://github.com/intellihr/serverless-node-utils.git#{hash}
+npm install serverless-node-utils
 ```
 
 Yarn
 ```
-yarn remove @intellihr/serverless-node-utils
-yarn add git+https://github.com/intellihr/serverless-node-utils.git#{hash}
+yarn add serverless-node-utils
 ```
 
 ## Check Usages
