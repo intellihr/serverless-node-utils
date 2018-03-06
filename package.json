@@ -1,9 +1,9 @@
 {
   "version": "1.0.0",
-  "name": "@intellihr/serverless-node-utils",
+  "name": "serverless-node-utils",
   "main": "lib/bundle.js",
   "repository": "https://github.com/intellihr/serverless-node-utils",
-  "author": "Eric Chan <eric.chan@intellihr.com.au>",
+  "author": "IntelliHR<https://intellihr.com.au/>, Eric Chan <eric.chan@intellihr.com.au>",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
