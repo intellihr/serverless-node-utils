@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import { defaultTo, map, toString } from 'lodash'
 import HTTPStatus from 'http-status'
 
 export default class Response {
@@ -77,13 +77,13 @@ export default class Response {
       errors
     }
   ) {
-    const returnErrors = _.map(errors, error => {
-      const instance = _.toString(error.property)
+    const returnErrors = map(errors, error => {
+      const instance = toString(error.property)
       const prefix = instance ? instance + ' ' : instance
 
       return {
-        code: _.defaultTo(error.code, HTTPStatus.BAD_REQUEST),
-        detail: `${prefix}${_.defaultTo(error.message, 'Bad Request')}`
+        code: defaultTo(error.code, HTTPStatus.BAD_REQUEST),
+        detail: `${prefix}${defaultTo(error.message, 'Bad Request')}`
       }
     })
 

@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import { curry } from 'lodash'
 
 function swaggerCallbackHandler (resolve, reject) {
   return (error, schema) => {
@@ -39,8 +39,8 @@ function promisifyHandler (Promise, callbackHandler, fn) {
   }
 }
 
-const promisify = _.curry(promisifyHandler)(Promise)
+const promisify = curry(promisifyHandler)(Promise)
 
-export const awsPromisify = _.curry(promisify)(awsCallbackHandler)
-export const execPromisify = _.curry(promisify)(execCallbackHandler(console))
-export const swaggerPromisify = _.curry(promisify)(swaggerCallbackHandler)
+export const awsPromisify = curry(promisify)(awsCallbackHandler)
+export const execPromisify = curry(promisify)(execCallbackHandler(console))
+export const swaggerPromisify = curry(promisify)(swaggerCallbackHandler)
