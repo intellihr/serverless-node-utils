@@ -1,6 +1,7 @@
 {
   "version": "1.0.0",
   "name": "serverless-node-utils",
+  "description": "A serverless utils library",
   "main": "lib/bundle.js",
   "repository": "https://github.com/intellihr/serverless-node-utils",
   "author": "IntelliHR<https://intellihr.com.au/>, Eric Chan <eric.chan@intellihr.com.au>",
@@ -42,5 +43,6 @@
     "ignore": [
       "/lib/"
     ]
-  }
+  },
+  "files": ["lib"]
 }
