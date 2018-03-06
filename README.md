@@ -1,17 +1,24 @@
+An AWS serverless util library for `node.js`
+
 ## Install
 
-Replace `{hash}` with the first 7 digit of the commit hash. e.g. `a453ed9`
-
-Npm
+NPM
 ```sh
-npm install git+https://github.com/intellihr/serverless-node-utils.git#{hash}
+npm install serverless-node-utils
 ```
 
 Yarn
+```sh
+yarn add serverless-node-utils
 ```
-yarn remove @intellihr/serverless-node-utils
-yarn add git+https://github.com/intellihr/serverless-node-utils.git#{hash}
+
+## Usage
+
+```javascript
+const utils = require('serverless-node-utils');
 ```
+
+Then you could use the methods exported in `src/index.js`
 
 ## Check Usages
 
