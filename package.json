@@ -1,5 +1,4 @@
 {
-  "private": true,
   "version": "1.0.0",
   "name": "@intellihr/serverless-node-utils",
   "main": "lib/bundle.js",
