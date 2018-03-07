@@ -1,7 +1,4 @@
-import _ from 'lodash'
+import { isString } from 'lodash'
 import serializerr from 'serializerr'
-import { curry } from 'ramda'
 
-export const serialize = curry(
-  ({ isString }, serializerr, obj) => isString(obj) ? obj : serializerr(obj)
-)(_, serializerr)
+export const serialize = obj => isString(obj) ? obj : serializerr(obj)

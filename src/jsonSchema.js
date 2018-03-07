@@ -1,11 +1,11 @@
-import _ from 'lodash'
+import { isNil, isNumber, toString } from 'lodash'
 import * as R from 'ramda'
 import validator from 'validator'
 import { Validator as JsValidator } from 'jsonschema'
 
 function allowEmpty (fn) {
   return (input, ...args) => {
-    if (_.isNil(input)) {
+    if (isNil(input)) {
       return () => true
     }
     return fn(input, ...args)
@@ -14,8 +14,8 @@ function allowEmpty (fn) {
 
 function allowNumber (fn) {
   return (input, ...args) => {
-    if (_.isNumber(input)) {
-      return fn(_.toString(input), ...args)
+    if (isNumber(input)) {
+      return fn(toString(input), ...args)
     }
     return fn(input, ...args)
   }

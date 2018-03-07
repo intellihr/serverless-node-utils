@@ -1,9 +1,7 @@
-import _ from 'lodash'
-import { curry, compose } from 'ramda'
+import { omitBy, isNil } from 'lodash'
+import { compose } from 'ramda'
 
-const omitNilValueInLog = curry(
-  (_, fn) => params => fn(_.omitBy(params, _.isNil))
-)(_)
+const omitNilValueInLog = fn => params => fn(omitBy(params, isNil))
 
 const filterLogByLoggingLevel = (
   ({ LOGGING_LEVEL }) => {
