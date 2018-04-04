@@ -2,6 +2,7 @@ import { isNil, isNumber, toString } from 'lodash'
 import * as R from 'ramda'
 import validator from 'validator'
 import { Validator as JsValidator } from 'jsonschema'
+import cleanDeep from 'clean-deep'
 
 function allowEmpty (fn) {
   return (input, ...args) => {
@@ -40,4 +41,16 @@ class JsonSchemaValidator extends JsValidator {
 
 const jsv = new JsonSchemaValidator()
 
-export const validate = ::jsv.validate
+export const validate = (body, schema) => ::jsv.validate(
+  cleanDeep(
+    body,
+    {
+      emptyArrays: false,
+      emptyObjects: false,
+      emptyStrings: false,
+      nullValues: true,
+      undefinedValues: true
+    }
+  ),
+  schema
+)

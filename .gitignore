@@ -3,5 +3,6 @@ node_modules
 .env
 .idea/
 
+yarn-error.log
 
 lib/bundle.js

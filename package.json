@@ -16,6 +16,7 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-es2017": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "clean-deep": "^3.0.2",
     "snazzy": "^7.0.0",
     "standard": "^10.0.3",
     "webpack": "^3.5.5",
@@ -26,8 +27,7 @@
     "build": "webpack --config webpack.config.js -d --progress",
     "build:watch": "yarn build --watch --progress",
     "lint": "standard --env jest --verbose | snazzy",
-    "lint:fix": "standard --env jest --fix",
-    "prepublish": "yarn run lint && yarn run build"
+    "lint:fix": "standard --env jest --fix"
   },
   "dependencies": {
     "aws-sdk": "^2.180.0",

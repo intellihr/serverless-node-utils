@@ -1,8 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const nodeExternals = require('webpack-node-externals')
-
 
 module.exports = {
   entry: path.join(__dirname, 'src/index.js'),
