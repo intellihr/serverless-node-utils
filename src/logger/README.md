@@ -1,4 +1,6 @@
-# logger
+# logger (Deprecated)
+
+THIS IS DEPRECATED. USE [lambda-logger](https://gitlab.com/intellihr/lambda-logger-js) INSTEAD.
 
 A logger which complies with our logging standard (see [Logging Format](https://intellihr.atlassian.net/wiki/spaces/DG/pages/284983300/Logging+Format))
 
