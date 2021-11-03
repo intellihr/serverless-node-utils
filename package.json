@@ -38,7 +38,7 @@
     "ramda": "^0.25.0",
     "serializerr": "^1.0.3",
     "swagger-tools": "^0.10.3",
-    "validator": "^9.2.0"
+    "validator": "^13.7.0"
   },
   "standard": {
     "parser": "babel-eslint",
