@@ -1,5 +1,5 @@
 {
-  "version": "1.0.3",
+  "version": "1.0.4",
   "name": "@intellihr/serverless-node-utils",
   "description": "A serverless utils library",
   "main": "lib/bundle.js",
@@ -45,6 +45,9 @@
     "ignore": [
       "/lib/"
     ]
+  },
+  "resolutions": {
+    "qs": "6.5.3"
   },
   "files": [
     "lib"
