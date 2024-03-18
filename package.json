@@ -49,6 +49,9 @@
   "resolutions": {
     "qs": "6.5.3"
   },
+  "overrides": {
+    "qs": "6.5.3"
+  },
   "files": [
     "lib"
   ]
